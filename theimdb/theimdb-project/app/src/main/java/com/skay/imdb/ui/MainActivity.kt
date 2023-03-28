@@ -1,15 +1,9 @@
-package com.skay.imdb
+package com.skay.imdb.ui
 
 import android.os.Bundle
 import android.util.Log
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import android.view.Menu
-import android.view.MenuItem
+import com.skay.imdb.common.Constants
 import com.skay.imdb.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

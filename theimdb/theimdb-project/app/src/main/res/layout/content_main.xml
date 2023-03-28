@@ -10,7 +10,7 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.skay.imdb.FirstFragment"
+        android:name="com.skay.imdb.ui.MoviesListFragment"
         tools:layout="@layout/fragment_first" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
