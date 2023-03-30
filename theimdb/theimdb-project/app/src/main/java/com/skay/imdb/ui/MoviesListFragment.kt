@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.skay.imdb.data.MoviesRepository
+import com.skay.imdb.common.DependencyContainer
 import com.skay.imdb.data.model.Movie
 import com.skay.imdb.databinding.FragmentAllMoviesBinding
 import com.skay.imdb.ui.contract.MoviesListener
@@ -47,7 +47,8 @@ class MoviesListFragment : Fragment() {
 
     private fun initView() {
         binding.moviesList.apply {
-            adapter = MoviesListAdapter(MoviesRepository.getMovies(), ::onMovieClick)
+            adapter =
+                MoviesListAdapter(DependencyContainer.moviesRepository.getMovies(), ::onMovieClick)
             layoutManager = LinearLayoutManager(context)
         }
     }

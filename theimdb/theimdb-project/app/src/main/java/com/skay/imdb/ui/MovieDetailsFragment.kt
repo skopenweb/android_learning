@@ -33,7 +33,6 @@ class MovieDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initView()
     }
 
@@ -70,13 +69,11 @@ class MovieDetailsFragment : Fragment() {
     }
 
     companion object {
-        fun getInstance(movie: Movie): MovieDetailsFragment {
-            val bundle = Bundle().apply {
-                putParcelable(Constants.KEY_MOVIE, movie)
+        fun getInstance(movie: Movie): MovieDetailsFragment =
+            MovieDetailsFragment().apply {
+                arguments = Bundle().apply {
+                    putParcelable(Constants.KEY_MOVIE, movie)
+                }
             }
-            val frag = MovieDetailsFragment()
-            frag.arguments = bundle
-            return frag
-        }
     }
 }
