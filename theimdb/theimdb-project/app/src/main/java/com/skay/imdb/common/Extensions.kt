@@ -3,7 +3,6 @@ package com.skay.imdb.common
 import android.content.Context
 import android.widget.Toast
 import com.skay.imdb.data.model.Movie
-import java.util.*
 import kotlin.random.Random
 
 fun Context.toast(message: String, duration: Int = Toast.LENGTH_SHORT) {
@@ -23,8 +22,8 @@ fun randomNumberString(length: Int): String {
 fun randomMovie() = Movie(
     name = randomAlphaString(6),
     description = randomAlphaString(50),
-    imageUrl = "https://cdn.sstatic.net/Img/home/illo-public.svg?v=14bd5a506009",
-    releaseDate = Date(),
+    imageUrl = "https://upload.wikimedia.org/wikipedia/en/6/63/Godzilla_vs._Kong.png",
+    releaseDate = "12-11-23",
     rating = Random.nextDouble(10.0),
     popularity = Random.nextDouble(50_000.0)
 )

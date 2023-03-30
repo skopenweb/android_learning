@@ -1,12 +1,14 @@
 package com.skay.imdb.ui
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.skay.imdb.common.Constants
+import androidx.fragment.app.Fragment
+import com.skay.imdb.R
+import com.skay.imdb.data.model.Movie
 import com.skay.imdb.databinding.ActivityMainBinding
+import com.skay.imdb.ui.contract.MoviesListener
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MoviesListener {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -16,10 +18,24 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        initView()
+        if (savedInstanceState == null) {
+            initView()
+        }
     }
 
     private fun initView() {
-        Log.d(Constants.TAG, "view init'ed")
+        load(MoviesListFragment())
+    }
+
+    private fun load(fragment: Fragment) {
+        supportFragmentManager.beginTransaction().add(R.id.container, fragment)
+            .commit()
+    }
+
+    override fun onRowClick(movie: Movie) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.container, MovieDetailsFragment.getInstance(movie))
+            .addToBackStack(MovieDetailsFragment::class.java.name)
+            .commitAllowingStateLoss()
     }
 }
