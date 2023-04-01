@@ -3,7 +3,7 @@ package com.skay.imdb.common
 import com.skay.imdb.data.InMemoryDataSource
 import com.skay.imdb.data.LocalDataSource
 import com.skay.imdb.data.MoviesRepositoryImpl
-import com.skay.imdb.data.RemoteDataSource
+import com.skay.imdb.data.remote.RemoteDataSource
 
 object DependencyContainer {
 
