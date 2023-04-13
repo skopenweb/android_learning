@@ -1,5 +1,6 @@
 package com.skay.imdb.data
 
+import android.util.Log
 import com.skay.imdb.common.DependencyContainer
 import com.skay.imdb.data.model.Movie
 
@@ -9,6 +10,12 @@ class MoviesRepositoryImpl : MoviesRepository {
         return DependencyContainer.localDataSource.movies
 //        return DependencyContainer.inMemoryDataSource.getMovies()
     }
+
+    override fun fetchMovies(callback: (List<Movie>) -> Unit) {
+        DependencyContainer.remoteDataSource.fetchMovies(callback)
+    }
+
+
 }
 
 fun main() {

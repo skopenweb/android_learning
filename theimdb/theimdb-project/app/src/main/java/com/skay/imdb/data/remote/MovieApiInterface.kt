@@ -1,11 +1,12 @@
 package com.skay.imdb.data.remote
 
-import okhttp3.Call
+import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 
 interface MovieApiInterface {
-    @GET("users/{username}")
-    fun getMovies(@Path("username") username: String?): Call<RemoteDataEntity>?
+    @GET("3/movie/popular")
+    fun getMovies(@Query("api_key") apiKey: String): Call<RemoteDataEntity?>
 }

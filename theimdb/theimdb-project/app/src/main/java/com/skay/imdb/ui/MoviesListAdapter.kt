@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide
 import com.skay.imdb.data.model.Movie
 import com.skay.imdb.databinding.ItemMovieBinding
 
-class MoviesListAdapter(private val movies: List<Movie>, private val movieClickHandler: (movie: Movie) -> Unit) :
+class MoviesListAdapter(private var movies: List<Movie>, private val movieClickHandler: (movie: Movie) -> Unit) :
     RecyclerView.Adapter<MoviesListAdapter.MovieItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieItemViewHolder {
@@ -20,6 +20,11 @@ class MoviesListAdapter(private val movies: List<Movie>, private val movieClickH
 
     override fun onBindViewHolder(holder: MovieItemViewHolder, position: Int) {
         holder.bind(movies[position])
+    }
+
+    fun setItems(items: List<Movie>) {
+        this.movies = items
+        notifyDataSetChanged()
     }
 
     inner class MovieItemViewHolder(private val binding: ItemMovieBinding) :

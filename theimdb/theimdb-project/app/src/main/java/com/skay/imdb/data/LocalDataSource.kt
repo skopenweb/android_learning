@@ -8,21 +8,23 @@ import java.io.InputStream
 
 class LocalDataSource {
     private var _movies = mutableListOf<Movie>()
-    val movies: List<Movie> = _movies
+    val movies: List<Movie>
+        get() = _movies
 
     init {
         extractMovies()
     }
 
-    fun extractMovies() {
+    private fun extractMovies() {
         val text = loadFromFile()
         parseMovies(text)
     }
 
-    fun parseMovies(text: String) {
+    private fun parseMovies(text: String) {
         val json = JSONObject(text)
         val results = json.optJSONArray("results")
 
+        _movies = mutableListOf<Movie>()
         results?.let {
             0.until(it.length()).onEach { i ->
                 it.optJSONObject(i)?.let { obj ->

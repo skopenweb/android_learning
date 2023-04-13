@@ -43,13 +43,20 @@ class MoviesListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initView()
+        DependencyContainer.moviesRepository.fetchMovies(::onMoviesLoaded)
     }
 
     private fun initView() {
         binding.moviesList.apply {
             adapter =
-                MoviesListAdapter(DependencyContainer.moviesRepository.getMovies(), ::onMovieClick)
+                MoviesListAdapter(emptyList(), ::onMovieClick)
             layoutManager = LinearLayoutManager(context)
+        }
+    }
+
+    private fun onMoviesLoaded(items: List<Movie>) {
+        activity?.runOnUiThread {
+            (binding.moviesList.adapter as? MoviesListAdapter)?.setItems(items)
         }
     }
 
