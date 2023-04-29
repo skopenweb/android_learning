@@ -12,7 +12,7 @@ class RemoteDataSource {
     private val threadpool = Executors.newFixedThreadPool(2)
 
     private var _movies = mutableListOf<RemoteEntityMovie>()
-    private val movies: List<RemoteEntityMovie>
+    val movies: List<RemoteEntityMovie>
         get() = _movies
 
     @Headers("api_key: 469da739633782e5e899a74a9ef36b50")

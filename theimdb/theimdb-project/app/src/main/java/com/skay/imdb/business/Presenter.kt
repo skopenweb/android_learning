@@ -12,7 +12,14 @@ interface Presenter {
 class PresenterImpl(var view: IView?) : Presenter {
 
     override fun loadMovies() {
-        DependencyContainer.moviesRepository.fetchMovies {
+        val repo = DependencyContainer.moviesRepository
+        repo.getMovies().let {
+            if (it.isNotEmpty()) {
+                view?.updateView(it)
+            }
+        }
+
+        repo.fetchMovies {
             view?.updateView(it.map { item -> item.toUiMovie() })
         }
     }

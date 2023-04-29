@@ -4,11 +4,15 @@ import android.util.Log
 import com.skay.imdb.common.DependencyContainer
 import com.skay.imdb.data.model.Movie
 import com.skay.imdb.data.remote.RemoteEntityMovie
+import com.skay.imdb.data.remote.toUiMovie
 
 class MoviesRepositoryImpl : MoviesRepository {
 
     override fun getMovies(): List<Movie> {
-        return DependencyContainer.localDataSource.movies
+        return DependencyContainer.remoteDataSource.movies.map {
+            it.toUiMovie()
+        }
+//        return DependencyContainer.localDataSource.movies
 //        return DependencyContainer.inMemoryDataSource.getMovies()
     }
 
@@ -19,5 +23,5 @@ class MoviesRepositoryImpl : MoviesRepository {
 }
 
 fun main() {
-    print(MoviesRepositoryImpl().getMovies())
+    MoviesRepositoryImpl().fetchMovies { print(it) }
 }

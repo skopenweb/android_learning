@@ -1,6 +1,8 @@
 package com.skay.imdb.ui
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,10 +25,20 @@ class MovieDetailsFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        Log.d(Constants.TAG, "onAttach# details frag")
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.d(Constants.TAG, "onCreate# details frag")
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        Log.d(Constants.TAG, "onCreateView# details frag")
         _binding = FragmentMovieDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -34,6 +46,7 @@ class MovieDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
+        Log.d(Constants.TAG, "onViewCreated# details frag")
     }
 
     private fun initView() {
@@ -61,6 +74,20 @@ class MovieDetailsFragment : Fragment() {
         binding.backImage.setOnClickListener {
             activity?.onBackPressedDispatcher?.onBackPressed()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d(Constants.TAG, "onResume# details frag")
+    }
+    override fun onPause() {
+        super.onPause()
+        Log.d(Constants.TAG, "onPause# details frag")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d(Constants.TAG, "onStop# details frag")
     }
 
     override fun onDestroyView() {
